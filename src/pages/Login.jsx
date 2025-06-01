@@ -13,21 +13,20 @@ export default function Login() {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login("wqerqw.qwerqwr.qwer", "sdfasd.sdfgs.dfg");
     navigate("/dashboard");
 
-    // await axios.post("/login", form).then((response) => {
-    //   login(response.data.result.access_token);
-    //   navigate("/dashboard");
-    // }).catch((error) => {
-    //   console.log(error)
-    //     if (error.status===400){
-    //       setMessage(error.response.data.message)
-    //     }
-    //     else{
-    //       setMessage("Service unavailable")
-    //     }
-    // })
+    await axios.post("/login", form).then((response) => {
+      login(response.data.result.access_token, response.data.result.refresh_token);
+      navigate("/dashboard");
+    }).catch((error) => {
+      console.log(error)
+        if (error.status===400){
+          setMessage(error.response.data.message)
+        }
+        else{
+          setMessage("Service unavailable")
+        }
+    })
 
   };
 
