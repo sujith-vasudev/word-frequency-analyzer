@@ -1,0 +1,57 @@
+.register-container {
+    height: 100vh;
+    background-color: rgb(212, 191, 255);
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+
+}
+
+.register-container div {
+    height: 60%;
+    width: 33%;
+}
+
+.register-container div:nth-child(2) {
+    background-color: rgb(174, 126, 251);
+    margin-top: 100px;
+    border-radius: 5px;
+    
+
+}
+
+
+.errorMessage{
+    width: 250px;
+    height: 20px;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-align: center;
+}
+.register-button-group{
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+}
+.register-button-group .register-area{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    height: 60%;
+    width: 100%;
+
+}
+
+button{
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-left: 35px;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(253, 142, 255);
+}

@@ -1,0 +1,68 @@
+.login-container {
+    height: 100vh;
+    background-color: rgb(212, 191, 255);
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+
+}
+
+.login-container div {
+    height: 60%;
+    width: 33%;
+}
+
+.login-container div:nth-child(2) {
+    background-color: rgb(174, 126, 251);
+    margin-top: 100px;
+    border-radius: 5px;
+    box-shadow: 5px 10px #888888;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    margin: 30px;
+
+
+}
+
+form input {
+    margin: 20px;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.errorMessage{
+    width: 250px;
+    height: 20px;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.login-container div form input:nth-child(4){
+    cursor: pointer;
+
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+
+.button-group{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    margin-left: 20px;
+}
+
+.button-group input:hover{
+    cursor: pointer;
+    background-color: rgb(253, 142, 255);
+}
