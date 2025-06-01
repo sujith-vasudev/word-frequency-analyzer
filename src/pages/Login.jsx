@@ -13,10 +13,9 @@ export default function Login() {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/dashboard");
 
     await axios.post("/login", form).then((response) => {
-      login(response.data.result.access_token, response.data.result.refresh_token);
+      login(response.data.result.username, response.data.result.access_token, response.data.result.refresh_token);
       navigate("/dashboard");
     }).catch((error) => {
       console.log(error)

@@ -31,9 +31,15 @@ export default function Dashboard() {
         }
 
       }).catch((error) => {
-        setData([])
-        setMessage(error.response.data.detail)
-        setStatus("error")
+        if(error.status ===400){
+            setData([])
+            setMessage(error.response.data.detail)
+            setStatus("error")
+        }else{
+                  setData([])
+                setMessage("Service unavailable")
+                setStatus("error")
+        }
 
       })
 
@@ -41,8 +47,8 @@ export default function Dashboard() {
 
     }
     else{
-      setMessage("please enter url")
-      setStatus("loading")
+      setMessage("Please enter url")
+      setStatus("")
     }
 
   };
@@ -56,15 +62,17 @@ export default function Dashboard() {
   return (
 
     <div className="container">
-      <nav className="nav-bar"> <div className="logout" onClick={handleLogOut}>Logout</div></nav>
+      <nav className="nav-bar"> 
+        <div>Hi, {localStorage.getItem("username").toUpperCase()}</div>
+         <div className="logout" onClick={handleLogOut}>Logout</div></nav>
 
       <div className="chart-area">
-        <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Paste your link" onBlur={handleScan} />
+        <input value={url} disabled={status==="loading"?true:false} onChange={(e) => setUrl(e.target.value)} placeholder="Paste your link" onBlur={handleScan} />
         
         <label className={status}>{message}</label>
 
 
-        <ResponsiveContainer width="99%" height={620} className={"chart-section"} min-width="99%" >
+        <ResponsiveContainer width="99%" height={620} className={"chart-section"} min-width="99%"  >
           <BarChart data={data}>
             <XAxis dataKey="word" />
             <YAxis />

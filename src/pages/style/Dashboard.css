@@ -1,17 +1,23 @@
 .container .nav-bar{
+  background-color: rgb(143, 51, 255);
   width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: column;
-  align-items:flex-end;
-  
-  background-color: rgb(143, 51, 255);
+  flex-direction: row;
+  align-content: space-between;
+
+}
+.container .nav-bar div:first-child{
+  width: 95%;
+}
+.container .nav-bar div:last-child{
+  width: 5%;
 }
 
 .container .nav-bar div{
   color: white;
   font-weight: bolder;
-  height: 40px;
+  height: 35px;
   width: 100px;
   padding-top: 14px;
   padding-left: 25px;
