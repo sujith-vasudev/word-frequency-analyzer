@@ -8,10 +8,13 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [message, setMessage] = useState("")
+  const [requestStatus, setrequestStatus] = useState(false)
 
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = async (e) => {
+    setrequestStatus(true)
+    setMessage("")
     e.preventDefault();
 
     await axios.post("/login", form).then((response) => {
@@ -19,13 +22,15 @@ export default function Login() {
       navigate("/dashboard");
     }).catch((error) => {
       console.log(error)
-        if (error.status===400){
-          setMessage(error.response.data.message)
-        }
-        else{
-          setMessage("Service unavailable")
-        }
+      if (error.status === 400) {
+        setMessage(error.response.data.message)
+      }
+      else {
+        setMessage("Service unavailable, please try again or contact administartor")
+      }
     })
+
+    setrequestStatus(false)
 
   };
 
@@ -35,15 +40,18 @@ export default function Login() {
 
       <div>
         <form onSubmit={handleSubmit}>
-                  <label className={message?"errorMessage":""}>{message}</label>
+
+          {requestStatus ? <label>Verifying user credentials ...</label> : null}
+
+          <label className={message ? "errorMessage" : ""}>{message}</label>
 
           <input name="username" onChange={handleChange} placeholder="Username" required={true} />
           <input name="password" type="password" onChange={handleChange} placeholder="Password" required={true} />
 
 
           <div className="button-group">
-          <input type="submit" value={"Login"} />
-          <input type="submit" value={"Register"} onClick={()=>navigate("/register")} />
+            <input type="submit" value={"Login"} disabled={requestStatus} />
+            <input type="submit" value={"Register"} onClick={() => navigate("/register")} />
           </div>
         </form>
       </div>
